@@ -1,10 +1,17 @@
 <% include header %>
+<div class="container">
+  <form id="playlist-url-form">
+    <div class="form-group">
+      <label for="playlist-url-input">YouTube Playlist URL</label>
+      <input type="text" id="playlist-url-input" class="form-control" placeholder="Enter URL" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Button</button>
+  </form>
+  <p class="text-uppercase">
+    <%= another %>
+  </p>
+</div>
 
-<h1>
-  <%= message %>
-</h1>
-<p class="text-uppercase">
-  <%= another %>
-</p>
+<script src="/js/controller.js"></script>
 
 <% include footer %>
