@@ -1,5 +1,6 @@
 var express = require('express')
 var path = require('path')
+var googleapi = require('./libs/google-api-helper')
 var app = express()
 
 app.set('title', 'Youtube to Spotify')
@@ -15,6 +16,8 @@ app.get('/', function(req, res) {
 
 app.get('/youtube/playlist', function(req, res) {
   var url = decodeURIComponent(req.query["playlistUrl"])
+
+  googleapi.getPlaylist(url)
 
   // return list of videos in playlist, and corresponding spotify song names
   res.writeHead(200, { 'Content-Type': 'application/json' })
