@@ -4,7 +4,7 @@ var app = express()
 
 app.set('title', 'Youtube to Spotify')
 app.set('view engine', 'ejs')
-app.use(express.static(path.join(__dirname, 'bower_components')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
   res.render('index', {
