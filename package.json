@@ -1,0 +1,11 @@
+{
+  "name": "youtube-to-spotify",
+  "version": "1.0.0",
+  "description": "Convert YouTube playlists into Spotify playlists",
+  "main": "server.js",
+  "scripts": {
+    "start": "node start.js"
+  },
+  "author": "Vikram Ramesh",
+  "license": "MIT"
+}
