@@ -8,10 +8,10 @@ var self = module.exports = {
   getPlaylist: function getPlaylist(playlistUrl) {
     var playlistId = url.parse(playlistUrl, true).query['list']
 
-    youtube.playlists.list({
+    youtube.playlistItems.list({
       part: "snippet",
       auth: API_KEY,
-      id: playlistId
+      playlistId: playlistId
     }, function (err, results) {
       console.log('Result: ' + (err ? err.message : JSON.stringify(results)));
     });
