@@ -4,9 +4,10 @@ $(function(){
   $('#playlist-url-form').submit(function(e) {
     $.get('/youtube/playlist', {
       playlistUrl: encodeURIComponent($('#playlist-url-input').val())
-    }).done(function() {
+    }).done(function(results) {
       console.log("success!");
       // render some template with data
+      console.log(JSON.stringify(results));
     }).fail(function() {
       console.log("error!");
       // error handling

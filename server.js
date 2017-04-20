@@ -17,15 +17,15 @@ app.get('/', function(req, res) {
 app.get('/youtube/playlist', function(req, res) {
   var url = decodeURIComponent(req.query["playlistUrl"])
 
-  googleapi.getPlaylist(url)
-
-  // return list of videos in playlist, and corresponding spotify song names
-  res.writeHead(200, { 'Content-Type': 'application/json' })
-  res.write(JSON.stringify({
-    playlist_video_names: ["video 1", "video 2"],
-    spotify_song_names: ["song 1", "song 2"]
-  }));
-  res.end();
+  // todo return list of videos in playlist, and corresponding spotify song names
+  var results = googleapi.getPlaylist(url).then(r => {
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.write(JSON.stringify(r))
+    res.end();
+  }).catch(e => {
+    // todo error handling
+    console.log(e)
+  })
 })
 
 app.put('/spotify/playlist/:playlistUrl', function(req, res) {
