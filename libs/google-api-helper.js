@@ -31,15 +31,13 @@ function paginatedGetPlaylist(params, currentResults) {
 }
 
 var self = module.exports = {
-  getPlaylist: function getPlaylist(playlistUrl) {
+  getPlaylist: (playlistUrl) => {
     var playlistId = Url.parse(playlistUrl, true).query['list']
-
     var params = {
       part: "snippet",
       auth: API_KEY,
       playlistId: playlistId
     }
-
     return paginatedGetPlaylist(params)
   }
 }
