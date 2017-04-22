@@ -5,13 +5,34 @@
       <label for="playlist-url-input">YouTube Playlist URL</label>
       <input type="text" id="playlist-url-input" class="form-control" placeholder="Enter URL" required>
     </div>
-    <button class="btn btn-primary" type="submit">Button</button>
+    <div>
+      <button class="btn btn-primary" type="submit">Button</button>
+      <i id="playlist-url-spinner" class="zmdi zmdi-spinner zmdi-hc-spin hidden"></i>
+    </div>
   </form>
-  <p class="text-uppercase">
-    <%= another %>
-  </p>
+  <div id="youtube-list-container"></div>
+
 </div>
 
+<script id="youtube-list-template" type="text/x-handlebars-template">
+  <ul class="list-group">
+    {{#.}}
+      {{> youtube-list-item}}
+    {{else}}
+       <li class="list-group-item">Nothing</li>
+    {{/.}}
+  </ul>
+</script>
+
+<script id="youtube-list-item-template" type="text/x-handlebars-template">
+  <li class="list-group-item">
+    {{name}}
+  </li>
+</script>
+
+
+<script src="/bower_components/handlebars/handlebars.min.js"></script>
 <script src="/js/controller.js"></script>
+
 
 <% include footer %>
