@@ -8,6 +8,10 @@ $(function(){
     "youtube-list-item": $('#youtube-list-item-template').html()
   });
 
+  Handlebars.registerHelper('idToYoutubeLink', (id) => {
+    return "https://www.youtube.com/watch?v=" + id;
+  })
+
   var youtubeListTemplate = Handlebars.compile($('#youtube-list-template').html());
 
   function renderYoutubeList(context) {

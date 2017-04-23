@@ -12,7 +12,7 @@ function paginatedGetPlaylist(params, currentResults) {
       // keep track of results
       var results = (currentResults || []).concat(r.items.map(item => {
         return {
-          id: item.id,
+          id: item.snippet.resourceId.videoId,
           name: item.snippet.title
         }
       }))
