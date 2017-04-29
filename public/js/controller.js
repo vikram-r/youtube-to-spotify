@@ -27,7 +27,8 @@ $(function(){
       console.log("success!");
       console.log(JSON.stringify(results));
       // render the list
-      renderYoutubeList(results);
+      // todo rename all this stuff, since list is not youtube specific, and include spotify results
+      renderYoutubeList(results.map(r => r.youtube));
       $playlistUrlSpinner.addClass('hidden');
     }).fail(function() {
       console.log("error!");

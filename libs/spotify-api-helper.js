@@ -17,7 +17,6 @@ var self = module.exports = {
             }
           })
         })
-        .then(items => console.log(items))
         .then(bestMatches)
         .catch(e => console.log("error: " + e))
   }

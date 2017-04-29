@@ -3,6 +3,7 @@ var path = require('path')
 var googleApi = require('./libs/google-api-helper')
 var spotifyApi = require('./libs/spotify-api-helper')
 var app = express()
+var Promise = require('bluebird')
 
 app.set('title', 'Youtube to Spotify')
 app.set('view engine', 'ejs')
@@ -17,19 +18,30 @@ app.get('/', (req, res) => {
 
 app.get('/youtube/playlist', (req, res) => {
   var url = decodeURIComponent(req.query["playlistUrl"])
-
-  spotifyApi.search('feel good inc').then(r => {
-    console.log('back in controller')
-  })
-
-  // todo return list of videos in playlist, and corresponding spotify song names
-  var results = googleApi.getPlaylist(url).then(r => {
-    res.json(r)
-    res.end()
-  }).catch(e => {
-    // todo error handling
-    console.log(e)
-  })
+  var results = googleApi.getPlaylist(url)
+    .then(playlistVideos => {
+      return Promise.props({
+        spotify: playlistVideos.map(video => spotifyApi.search(video.name)),
+        youtube: playlistVideos
+      })
+    })
+    .then(r => {
+      // todo bluebird might have a way to zip these
+      return r.youtube.map((y, i) => {
+        return {
+          youtube: y,
+          spotify: r.spotify[i]
+        }
+      })
+    })
+    .then(responseJson => {
+      res.json(responseJson)
+      res.end()
+    })
+    .catch(e => {
+      // todo error handling
+      console.log(e)
+    })
 })
 
 app.put('/spotify/playlist/:playlistUrl', (req, res) => {
