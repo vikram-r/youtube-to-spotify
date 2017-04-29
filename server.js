@@ -1,6 +1,7 @@
 var express = require('express')
 var path = require('path')
-var googleapi = require('./libs/google-api-helper')
+var googleApi = require('./libs/google-api-helper')
+var spotifyApi = require('./libs/spotify-api-helper')
 var app = express()
 
 app.set('title', 'Youtube to Spotify')
@@ -17,11 +18,14 @@ app.get('/', (req, res) => {
 app.get('/youtube/playlist', (req, res) => {
   var url = decodeURIComponent(req.query["playlistUrl"])
 
+  spotifyApi.search('feel good inc').then(r => {
+    console.log('back in controller')
+  })
+
   // todo return list of videos in playlist, and corresponding spotify song names
-  var results = googleapi.getPlaylist(url).then(r => {
-    // res.writeHead(200, { 'Content-Type': 'application/json' })
+  var results = googleApi.getPlaylist(url).then(r => {
     res.json(r)
-    res.end();
+    res.end()
   }).catch(e => {
     // todo error handling
     console.log(e)
@@ -35,7 +39,7 @@ app.put('/spotify/playlist/:playlistUrl', (req, res) => {
   // update playlist on spotify, and return status
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.write(JSON.stringify({ placeholder: "some_response" }));
-  res.end();
+  res.end()
 })
 
 app.listen(3000, () => {

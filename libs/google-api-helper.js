@@ -31,7 +31,7 @@ function paginatedGetPlaylist(params, currentResults) {
 }
 
 var self = module.exports = {
-  getPlaylist: (playlistUrl) => {
+  getPlaylist: function getPlaylist(playlistUrl) {
     var playlistId = Url.parse(playlistUrl, true).query['list']
     var params = {
       part: "snippet",
