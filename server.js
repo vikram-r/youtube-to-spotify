@@ -20,19 +20,13 @@ app.get('/youtube/playlist', (req, res) => {
   var url = decodeURIComponent(req.query["playlistUrl"])
   var results = googleApi.getPlaylist(url)
     .then(playlistVideos => {
-      return Promise.props({
-        spotify: playlistVideos.map(video => spotifyApi.search(video.name)),
-        youtube: playlistVideos
-      })
-    })
-    .then(r => {
-      // todo bluebird might have a way to zip these
-      return r.youtube.map((y, i) => {
-        return {
-          youtube: y,
-          spotify: r.spotify[i]
-        }
-      })
+      return Promise.all(playlistVideos.map(video => {
+          return Promise.props({
+            youtube: video,
+            spotify: spotifyApi.search(video.name)
+          })
+        })
+      )
     })
     .then(responseJson => {
       res.json(responseJson)
