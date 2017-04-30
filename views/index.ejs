@@ -40,10 +40,19 @@
       <a href={{idToYoutubeLink youtube.id}}>{{youtube.name}}</a>
     </td>
     <td>
-      <ul>
+      <ul class="list-group">
         {{#each spotify}}
-          <li>
-            <a href={{previewUrl}}>{{name}}</a>
+          <li class="list-group-item">
+            {{name}}
+            <p>
+              {{#if previewUrl}}
+              <audio controls>
+                <source src="{{previewUrl}}" type="audio/mpeg">
+              </audio>
+              {{else}}
+                <small>No Preview Available</small>
+              {{/if}}
+            </p>
           </li>
         {{/each}}
       </ul>
