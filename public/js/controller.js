@@ -1,21 +1,21 @@
 $(function(){
 
-  var $container = $('#youtube-list-container');
+  var $container = $('#playlist-list-container');
 
   var $playlistUrlSpinner = $('#playlist-url-spinner');
 
   Handlebars.registerPartial({
-    "youtube-list-item": $('#youtube-list-item-template').html()
+    "playlist-list-item": $('#playlist-list-item-template').html()
   });
 
   Handlebars.registerHelper('idToYoutubeLink', (id) => {
     return "https://www.youtube.com/watch?v=" + id;
   })
 
-  var youtubeListTemplate = Handlebars.compile($('#youtube-list-template').html());
+  var playlistListTemplate = Handlebars.compile($('#playlist-list-template').html());
 
-  function renderYoutubeList(context) {
-    $container.html(youtubeListTemplate(context));
+  function renderPlaylistList(context) {
+    $container.html(playlistListTemplate(context));
   }
 
   // initial form submit
@@ -27,8 +27,7 @@ $(function(){
       console.log("success!");
       console.log(JSON.stringify(results));
       // render the list
-      // todo rename all this stuff, since list is not youtube specific, and include spotify results
-      renderYoutubeList(results.map(r => r.youtube));
+      renderPlaylistList(results.map(r => r.youtube));
       $playlistUrlSpinner.addClass('hidden');
     }).fail(function() {
       console.log("error!");

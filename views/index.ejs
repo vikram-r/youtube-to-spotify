@@ -10,21 +10,21 @@
       <i id="playlist-url-spinner" class="zmdi zmdi-spinner zmdi-hc-spin hidden"></i>
     </div>
   </form>
-  <div id="youtube-list-container"></div>
+  <div id="playlist-list-container"></div>
 
 </div>
 
-<script id="youtube-list-template" type="text/x-handlebars-template">
+<script id="playlist-list-template" type="text/x-handlebars-template">
   <ul class="list-group">
     {{#.}}
-      {{> youtube-list-item}}
+      {{> playlist-list-item}}
     {{else}}
        <li class="list-group-item">Nothing</li>
     {{/.}}
   </ul>
 </script>
 
-<script id="youtube-list-item-template" type="text/x-handlebars-template">
+<script id="playlist-list-item-template" type="text/x-handlebars-template">
   <li class="list-group-item">
     <a href={{idToYoutubeLink id}}>{{name}}</a>
   </li>
