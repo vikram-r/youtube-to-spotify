@@ -15,19 +15,40 @@
 </div>
 
 <script id="playlist-list-template" type="text/x-handlebars-template">
-  <ul class="list-group">
-    {{#.}}
-      {{> playlist-list-item}}
-    {{else}}
-       <li class="list-group-item">Nothing</li>
-    {{/.}}
-  </ul>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>YouTube</th>
+        <th>Spotify</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#.}}
+        <tr>
+          {{> playlist-list-item}}
+        </tr>
+      {{else}}
+         <tr class="list-group-item">Nothing</tr>
+      {{/.}}
+  </tbody>
+  </table>
 </script>
 
 <script id="playlist-list-item-template" type="text/x-handlebars-template">
-  <li class="list-group-item">
-    <a href={{idToYoutubeLink id}}>{{name}}</a>
-  </li>
+  <tr class="{{rowStatusCss spotify.length}}">
+    <td>
+      <a href={{idToYoutubeLink youtube.id}}>{{youtube.name}}</a>
+    </td>
+    <td>
+      <ul>
+        {{#each spotify}}
+          <li>
+            <a href={{previewUrl}}>{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </td>
+  </tr>
 </script>
 
 
