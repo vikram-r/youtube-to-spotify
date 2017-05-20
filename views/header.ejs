@@ -6,8 +6,25 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="/css/main.css"
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <!-- todo make this a navbar, and include login links -->
-    <h2>YouTube Playlist URL</h2>
+    <!-- TODO modify this based on login status -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">YouTube to Spotify</a>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <button class="btn btn-default">YouTube Login</button>
+            </li>
+            <li>
+              <button class="btn btn-default">Spotify Login</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <h2 class="text-center">YouTube Playlist URL</h2>
