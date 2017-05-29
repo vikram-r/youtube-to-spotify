@@ -17,10 +17,14 @@
         <div class="collapse navbar-collapse" id="main-navbar">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <button class="btn btn-default">YouTube Login</button>
+              <a id="youtube-login-button" class="btn btn-default">YouTube Login</a>
             </li>
             <li>
-              <button class="btn btn-default">Spotify Login</button>
+              <% if (this.spotify_authorization_url) { %>
+                <a id="spotify-login-button" href="<%= spotify_authorization_url %>" class="btn btn-default">Spotify Login</a>
+              <% } else { %>
+                Logged in!
+              <% } %>
             </li>
           </ul>
         </div>
